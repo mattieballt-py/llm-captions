@@ -1,33 +1,14 @@
 'use client'
 
 import Image from "next/image";
-// Inside a component or page (e.g., LoginPage.tsx)
-'use client'
-
 import { supabase } from '@/lib/supabase'
+import { useCallback } from 'react';
 
 export default function Home() {
-  const loginWithGoogle = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: 'google',
-    })
-  }
+  const loginWithGoogle = useCallback(async () => {
+    await supabase.auth.signInWithOAuth({ provider: 'google' })
+  }, [])
 
-  return (
-    <main className="flex min-h-screen items-center justify-center">
-      <button
-        onClick={loginWithGoogle}
-        className="bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        Sign in with Google
-      </button>
-    </main>
-  )
-}
-
-
-
-export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -39,6 +20,12 @@ export default function Home() {
           height={38}
           priority
         />
+        <button
+          onClick={loginWithGoogle}
+          className="bg-blue-600 text-white px-4 py-2 rounded mb-4"
+        >
+          Sign in with Google
+        </button>
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2 tracking-[-.01em]">
             Get started by editing{" "}
@@ -51,7 +38,6 @@ export default function Home() {
             Save and see your changes instantly.
           </li>
         </ol>
-
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
