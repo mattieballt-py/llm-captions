@@ -1,4 +1,31 @@
+'use client'
+
 import Image from "next/image";
+// Inside a component or page (e.g., LoginPage.tsx)
+'use client'
+
+import { supabase } from '@/lib/supabase'
+
+export default function Home() {
+  const loginWithGoogle = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: 'google',
+    })
+  }
+
+  return (
+    <main className="flex min-h-screen items-center justify-center">
+      <button
+        onClick={loginWithGoogle}
+        className="bg-blue-600 text-white px-4 py-2 rounded"
+      >
+        Sign in with Google
+      </button>
+    </main>
+  )
+}
+
+
 
 export default function Home() {
   return (
