@@ -2,8 +2,16 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
 
+interface CaptionFile {
+  id: string
+  video_url: string
+  caption_url?: string
+  caption_text?: string
+  created_at: string
+}
+
 export default function History({ userId }: { userId: string }) {
-  const [files, setFiles] = useState<any[]>([])
+  const [files, setFiles] = useState<CaptionFile[]>([])
 
   useEffect(() => {
     async function fetchFiles() {
@@ -12,7 +20,7 @@ export default function History({ userId }: { userId: string }) {
         .select('*')
         .eq('user_id', userId)
         .order('created_at', { ascending: false })
-      if (!error) setFiles(data)
+      if (!error && data) setFiles(data)
     }
     fetchFiles()
   }, [userId])

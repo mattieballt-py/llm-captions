@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   })
 
   // Store in captions table
-  const { data, error } = await supabase.from('captions').insert([
+  await supabase.from('captions').insert([
     {
       user_id,
       video_url: file_url,

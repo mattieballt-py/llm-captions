@@ -9,7 +9,7 @@ export default function Upload({ usedFree }: { usedFree: boolean }) {
   const handleUpload = async () => {
     if (!file) return
     setUploading(true)
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from('videos')
       .upload(`public/${file.name}`, file)
     setUploading(false)

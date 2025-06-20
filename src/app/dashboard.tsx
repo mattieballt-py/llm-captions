@@ -4,9 +4,10 @@ import { supabase } from '@/lib/supabase'
 import Upload from '@/components/Upload'
 import History from '@/components/History'
 import Navbar from '@/components/Navbar'
+import type { User } from '@supabase/supabase-js'
 
 export default function Dashboard() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [usedFree, setUsedFree] = useState<boolean>(false)
 
   useEffect(() => {
